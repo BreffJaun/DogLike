@@ -6,15 +6,34 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		2D1962B72E8169BE001663A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE75F2992C8B1556001AD0A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE75F2A02C8B1556001AD0A3;
+			remoteInfo = DogLike;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2D1962B32E8169BE001663A2 /* DogLikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DogLikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE75F2A12C8B1556001AD0A3 /* DogLike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogLike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		12A929672D96ADD9000BB331 /* DogLike */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DogLike; sourceTree = "<group>"; };
+		2D1962B42E8169BE001663A2 /* DogLikeTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DogLikeTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2D1962B02E8169BE001663A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE75F29E2C8B1556001AD0A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				12A929672D96ADD9000BB331 /* DogLike */,
+				2D1962B42E8169BE001663A2 /* DogLikeTests */,
 				CE75F2A22C8B1556001AD0A3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -37,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				CE75F2A12C8B1556001AD0A3 /* DogLike.app */,
+				2D1962B32E8169BE001663A2 /* DogLikeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -44,6 +65,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2D1962B22E8169BE001663A2 /* DogLikeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D1962BB2E8169BE001663A2 /* Build configuration list for PBXNativeTarget "DogLikeTests" */;
+			buildPhases = (
+				2D1962AF2E8169BE001663A2 /* Sources */,
+				2D1962B02E8169BE001663A2 /* Frameworks */,
+				2D1962B12E8169BE001663A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D1962B82E8169BE001663A2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2D1962B42E8169BE001663A2 /* DogLikeTests */,
+			);
+			name = DogLikeTests;
+			packageProductDependencies = (
+			);
+			productName = DogLikeTests;
+			productReference = 2D1962B32E8169BE001663A2 /* DogLikeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE75F2A02C8B1556001AD0A3 /* DogLike */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE75F2AF2C8B1557001AD0A3 /* Build configuration list for PBXNativeTarget "DogLike" */;
@@ -71,9 +115,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					2D1962B22E8169BE001663A2 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = CE75F2A02C8B1556001AD0A3;
+					};
 					CE75F2A02C8B1556001AD0A3 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -93,11 +141,19 @@
 			projectRoot = "";
 			targets = (
 				CE75F2A02C8B1556001AD0A3 /* DogLike */,
+				2D1962B22E8169BE001663A2 /* DogLikeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2D1962B12E8169BE001663A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE75F29F2C8B1556001AD0A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,6 +164,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2D1962AF2E8169BE001663A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE75F29D2C8B1556001AD0A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,7 +180,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2D1962B82E8169BE001663A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE75F2A02C8B1556001AD0A3 /* DogLike */;
+			targetProxy = 2D1962B72E8169BE001663A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2D1962B92E8169BE001663A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C76HC9PC5N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "syntax-institut.de.DogLikeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DogLike.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DogLike";
+			};
+			name = Debug;
+		};
+		2D1962BA2E8169BE001663A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C76HC9PC5N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "syntax-institut.de.DogLikeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DogLike.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DogLike";
+			};
+			name = Release;
+		};
 		CE75F2AD2C8B1557001AD0A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -245,6 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DogLike/Preview Content\"";
+				DEVELOPMENT_TEAM = C76HC9PC5N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -273,6 +389,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DogLike/Preview Content\"";
+				DEVELOPMENT_TEAM = C76HC9PC5N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -296,6 +413,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2D1962BB2E8169BE001663A2 /* Build configuration list for PBXNativeTarget "DogLikeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D1962B92E8169BE001663A2 /* Debug */,
+				2D1962BA2E8169BE001663A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE75F29C2C8B1556001AD0A3 /* Build configuration list for PBXProject "DogLike" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
