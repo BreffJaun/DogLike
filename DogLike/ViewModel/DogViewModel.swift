@@ -3,14 +3,15 @@ import UserNotifications
 
 @MainActor
 class DogViewModel: ObservableObject {
-    @Published var dogImageURL: URL?
     
+    @Published var dogImageURL: URL?
     @Published var likeCount = 0
     @Published var dislikeCount = 0
-    
     @Published var breedName = ""
     @Published var errorMessage: String?
-
+    
+    var notificationViewModel: NotificationViewModel?
+    
     private var repository: DogRepositoryProtocol
     
     init(repository: DogRepositoryProtocol = DogRepository()) {
@@ -36,21 +37,19 @@ class DogViewModel: ObservableObject {
     
     func likeAction() {
         likeCount += 1
-        Task {
-            await fetchRandomDogImage()
-        }
+        notificationViewModel?.checkMilestone(likes: likeCount, dislikes: dislikeCount)
+        Task { await fetchRandomDogImage() }
     }
     
     func dislikeAction() {
         dislikeCount += 1
-        Task {
-            await fetchRandomDogImage()
-        }
+        notificationViewModel?.checkMilestone(likes: likeCount, dislikes: dislikeCount)
+        Task { await fetchRandomDogImage() }
     }
     
     func extractBreedName(from urlString: String) -> String? {
         let searchKeyword = "breeds/"
-
+        
         guard let range = urlString.range(of: searchKeyword) else {
             return nil
         }

@@ -2,6 +2,9 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = DogViewModel()
+    @StateObject private var notificationViewModel = NotificationViewModel()
+    
+    @State private var showWelcomeBackAlert = false
     
     var body: some View {
         VStack {
@@ -9,12 +12,12 @@ struct ContentView: View {
             Spacer()
             
             Text(viewModel.breedName)
-                 .font(.largeTitle)
-                 .fontWeight(.bold)
-                 .foregroundColor(.black)
-                 .padding()
-                 .background(Color.blue.opacity(0.3))
-                 .cornerRadius(10)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .padding()
+                .background(Color.blue.opacity(0.3))
+                .cornerRadius(10)
             
             Spacer()
             
@@ -33,7 +36,7 @@ struct ContentView: View {
             } else {
                 ProgressView()
             }
-
+            
             Spacer()
             
             HStack {
@@ -53,6 +56,20 @@ struct ContentView: View {
                 }
                 .padding()
             }
+        }
+        .onAppear {
+            if notificationViewModel.areNotificationsAllowed == nil {
+                notificationViewModel.requestPermission()
+            }
+            notificationViewModel.resetBadgeCount()
+            
+            viewModel.notificationViewModel = notificationViewModel
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("OpenAppActionTriggered"))) { _ in
+            showWelcomeBackAlert = true
+        }
+        .alert("Willkommen zurück!", isPresented: $showWelcomeBackAlert) {
+            Button("OK", role: .cancel) {}
         }
     }
 }
