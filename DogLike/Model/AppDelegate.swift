@@ -12,8 +12,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
         let center = UNUserNotificationCenter.current()
-        center.delegate = self
+        center.delegate = self 
 
         let notificationVM = NotificationViewModel()
         notificationVM.registerNotificationCategories()
@@ -21,6 +22,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         return true
     }
 
+    // MARK: - Notification im Vordergrund anzeigen
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.banner, .sound])
+    }
+
+    // MARK: - Reaktion auf User-Aktionen bei Notification
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {

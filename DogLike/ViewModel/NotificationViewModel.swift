@@ -41,10 +41,10 @@ class NotificationViewModel: ObservableObject {
     func scheduleNotification() {
         let content = UNMutableNotificationContent()
         
-//        var date = DateComponents()
-//        date.hour = 18
-//        date.minute = 25
-//        
+        //        var date = DateComponents()
+        //        date.hour = 18
+        //        date.minute = 25
+        //
         content.title = "Daily Reminder"
         content.body = "Open me 😎"
         content.badge = 1
@@ -53,7 +53,7 @@ class NotificationViewModel: ObservableObject {
         
         customNotificationText = ""
         
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        //        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -80,25 +80,38 @@ class NotificationViewModel: ObservableObject {
         content.title = title
         content.body = body
         content.sound = .default
-
-
+        
+        
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: content,
-                                            trigger: trigger)
-
+                                            trigger: trigger
+        )
+        
         UNUserNotificationCenter.current().add(request)
     }
     
+//    func checkMilestone(likes: Int, dislikes: Int) {
+//        if likes % 10 == 0 && likes != 0 {
+//            scheduleMilestoneNotification(title: "Milestone reached!",
+//            body: "You liked \(likes) dogs 🥳!")
+//        }
+//        
+//        if dislikes % 10 == 0 && dislikes != 0 {
+//            scheduleMilestoneNotification(title: "Milestone reached!",
+//            body: "You have \(dislikes) Dogs disliked 🫨!")
+//        }
+//    }
     func checkMilestone(likes: Int, dislikes: Int) {
+        print("Checking milestones: likes \(likes), dislikes \(dislikes)")
         if likes % 10 == 0 && likes != 0 {
-            scheduleMilestoneNotification(title: "Milestone reached!",
-                                 body: "You liked \(likes) dogs 🥳!")
+            print("Scheduling like milestone notification")
+            scheduleMilestoneNotification(title: "Milestone reached!", body: "You liked \(likes) dogs 🥳!")
         }
         
         if dislikes % 10 == 0 && dislikes != 0 {
-            scheduleMilestoneNotification(title: "Milestone reached!",
-                                 body: "You have \(dislikes) Dogs disliked 🫨!")
+            print("Scheduling dislike milestone notification")
+            scheduleMilestoneNotification(title: "Milestone reached!", body: "You have \(dislikes) Dogs disliked 🫨!")
         }
     }
     
@@ -112,7 +125,7 @@ class NotificationViewModel: ObservableObject {
         let dismissAction = UNNotificationAction(
             identifier: "DISMISS_ACTION",
             title: "Schließen",
-            options: [] 
+            options: []
         )
         
         let dailyCategory = UNNotificationCategory(

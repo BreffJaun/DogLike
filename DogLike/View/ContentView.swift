@@ -30,9 +30,6 @@ struct ContentView: View {
                     .scaleEffect(headlineClicked ? 1.5 : 1.0)
             }
             
-            
-            
-            
             Spacer()
             
             if let dogImageURL = viewModel.dogImageURL {
