@@ -91,17 +91,6 @@ class NotificationViewModel: ObservableObject {
         UNUserNotificationCenter.current().add(request)
     }
     
-//    func checkMilestone(likes: Int, dislikes: Int) {
-//        if likes % 10 == 0 && likes != 0 {
-//            scheduleMilestoneNotification(title: "Milestone reached!",
-//            body: "You liked \(likes) dogs 🥳!")
-//        }
-//        
-//        if dislikes % 10 == 0 && dislikes != 0 {
-//            scheduleMilestoneNotification(title: "Milestone reached!",
-//            body: "You have \(dislikes) Dogs disliked 🫨!")
-//        }
-//    }
     func checkMilestone(likes: Int, dislikes: Int) {
         print("Checking milestones: likes \(likes), dislikes \(dislikes)")
         if likes % 10 == 0 && likes != 0 {

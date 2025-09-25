@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var triggerDislikeConfetti = 0
     @State private var headlineClicked = false
     @State private var imageScale: CGFloat = 0.5
+    @State private var offset = CGSize.zero
     
     var body: some View {
         VStack {
@@ -41,6 +42,36 @@ struct ContentView: View {
                         .cornerRadius(20)
                         .shadow(radius: 10)
                         .scaleEffect(imageScale)
+                        .offset(offset)
+                        .rotationEffect(.degrees(offset.width / 20.0))
+                        .gesture(
+                            SimultaneousGesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        offset = gesture.translation
+                                    }
+                                    .onEnded { gesture in
+                                        if gesture.translation.width > 100 {
+                                            swipeRight()
+                                        } else if gesture.translation.width < -100 {
+                                            swipeLeft()
+                                        } else {
+                                            withAnimation(.spring()) {
+                                                offset = .zero
+                                            }
+                                        }
+                                    },
+                                MagnifyGesture()
+                                    .onChanged { gesture in
+                                        imageScale = gesture.magnification
+                                    }
+                                    .onEnded { _ in
+                                        withAnimation(.spring()) {
+                                            imageScale = 1.0
+                                        }
+                                    }
+                            )
+                        )
                         .onAppear {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
                                 imageScale = 1.0
@@ -51,6 +82,15 @@ struct ContentView: View {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
                                 imageScale = 1.0
                             }
+                        }
+                        .onTapGesture {
+                            guard let url = viewModel.dogImageURL else {
+                                return
+                            }
+                            print(url)
+                        }
+                        .onLongPressGesture(minimumDuration: 1.5) {
+                            likeDog()
                         }
                 } placeholder: {
                     ProgressView()
@@ -65,17 +105,7 @@ struct ContentView: View {
             HStack {
                 // MARK: DISLIKE
                 Button(action: {
-                    withAnimation(.spring(response: 0.25, dampingFraction: 0.4)) {
-                        dislikeButtonPressed.toggle()
-                        triggerDislikeConfetti += 1
-                    }
-                    viewModel.dislikeAction()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                        withAnimation(.spring(response: 0.25, dampingFraction: 0.4)) {
-                            dislikeButtonPressed = false
-                        }
-                    }
+                    dislikeDog()
                 }) {
                     Image(systemName: dislikeButtonPressed ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                         .resizable()
@@ -97,17 +127,7 @@ struct ContentView: View {
                 
                 // MARK: LIKE
                 Button(action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
-                        likeButtonPressed.toggle()
-                        triggerConfetti += 1
-                    }
-                    viewModel.likeAction()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
-                            likeButtonPressed = false
-                        }
-                    }
+                    likeDog()
                 }) {
                     Image(systemName: likeButtonPressed ? "hand.thumbsup.fill" : "hand.thumbsup")
                         .resizable()
@@ -115,6 +135,7 @@ struct ContentView: View {
                         .foregroundStyle(likeButtonPressed ? .green : .blue)
                         .scaleEffect(likeButtonPressed ? 1.5 : 1.0)
                         .shadow(color: likeButtonPressed ? .green.opacity(0.5) : .clear, radius: 10)
+                    
                 }
                 .padding()
                 .confettiCannon(
@@ -145,6 +166,54 @@ struct ContentView: View {
         }
         .alert("Willkommen zurück!", isPresented: $showWelcomeBackAlert) {
             Button("OK", role: .cancel) {}
+        }
+    }
+    
+    private func likeDog() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+            likeButtonPressed.toggle()
+            triggerConfetti += 1
+        }
+        viewModel.likeAction()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                likeButtonPressed = false
+            }
+        }
+    }
+    
+    private func dislikeDog() {
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.4)) {
+            dislikeButtonPressed.toggle()
+            triggerDislikeConfetti += 1
+        }
+        viewModel.dislikeAction()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.4)) {
+                dislikeButtonPressed = false
+            }
+        }
+    }
+    
+    private func swipeRight() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            offset = CGSize(width: 500, height: 0)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            offset = .zero
+            likeDog()
+        }
+    }
+    
+    private func swipeLeft() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            offset = CGSize(width: -500, height: 0)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            offset = .zero
+            dislikeDog()
         }
     }
 }
