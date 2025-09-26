@@ -6,7 +6,7 @@
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-Yes-brightgreen?logo=swift&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-<img src="Images/DogLike.png" width="75%">  
+<img src="DogLike/Images/DogLike.png" width="75%">  
 
 This SwiftUI app lets users **swipe through dogs and rate them with a like or dislike**, similar to dating apps. 🐶💚  
 Each dog is displayed with its **picture and breed**, and after every decision, a new dog appears.  
